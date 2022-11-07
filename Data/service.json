@@ -1,0 +1,57 @@
+[
+    {"service_id": "01",
+        "title": "comprehensive diagnosis",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRARCB93nKQVc-07Rzkhn6pogCMQBHMljoH7A&usqp=CAU",
+        "rating": { "number": 4.5 },
+        "total_view": 500,
+        "visit": "500.00",
+        "description": "A discussion of the objectives of diagnosis, participants and architecture leads to the consideration of diagnostic schemas of increasing complexity. Examined first is the conventional case of single-label diagnosis. The case of multiple illness formulation is considered concerning the plurality of mental disorders as well as of general medical disorders. The formulation of a whole clinical condition where contextualized pathology and problems are described is then followed by the consideration of positive aspects of health as well as quality of life. Finally, a comprehensive diagnostic model is reviewed. It integrates a standardized multiaxial formulation (illness, disabilities, contextual factors and quality of life) and an idiographic personalized formulation (culturally informed and contextualized clinical problems, patient's assets pertinent to care, and expectations of health restoration and promotion as jointly understood by clinician, patient and family). Such integrative diagnostic schemas may offer a richer informational basis for clinical description and care as well as a more effective focus for the surveillance of population health."
+
+    },
+    {"service_id": "02",
+        "title": "Laser Correction",
+        "img": "https://e7.pngegg.com/pngimages/987/370/png-clipart-claris-eye-care-surgery-ophthalmology-skin-care-eye-care-professional-eye-care-cream-face-thumbnail.png",
+        "rating": { "number": 4.5 },
+        "total_view": 488,
+        "visit": "150.00",
+        "description": "LASIK eye surgery is the best known and most commonly performed laser refractive surgery to correct vision problems. Laser-assisted in situ keratomileusis (LASIK) can be an alternative to glasses or contact lenses. During LASIK surgery, a special type of cutting laser is used to precisely change the shape of the dome-shaped clear tissue at the front of your eye (cornea) to improve vision.In eyes with normal vision, the cornea bends (refracts) light precisely onto the retina at the back of the eye. But with nearsightedness (myopia), farsightedness (hyperopia) or astigmatism, the light is bent incorrectly, resulting in blurred vision"
+
+    },
+    {"service_id": "03",
+        "title": "surgery",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_JxFJX-fIlw88WzOSOqzzezwoGvhODnHq_Q&usqp=CAU",
+        "rating": { "number": 4.5 },
+        "total_view": 600,
+        "visit": "600",
+        "description": "Contemporary surgical therapy is greatly helped by monitoring devices that are used during surgery and during the postoperative period. Blood pressure and pulse rate are monitored during an operation because a fall in the former and a rise in the latter give evidence of a critical loss of blood. Other items monitored are the heart contractions as indicated by electrocardiograms; tracings of brain waves recorded by electroencephalograms, which reflect changes in brain function; the oxygen level in arteries and veins; carbon dioxide partial pressure in the circulating blood; and respiratory volume and exchange. Intensive monitoring of the patient usually continues into the critical postoperative stage."
+
+    },
+    {"service_id": "04",
+        "title": "Glaucoma ",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ07zbLje1TopOYqSUAjXZ0dt47FhJacAgbmw&usqp=CAU",
+        "rating": { "number": 4.5 },
+        "total_view": 488,
+        "visit": "400",
+        "description": "The damage caused by glaucoma can't be reversed. But treatment and regular checkups can help slow or prevent vision loss, especially if you catch the disease in its early stages.Glaucoma is treated by lowering intraocular pressure. Treatment options include prescription eye drops, oral medicines, laser treatment, surgery or a combination of approaches."
+
+    },
+    {"service_id": "05",
+        "title": "Retinal diseases",
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJxtYosjN6iGE1R3rvsKtaWpMn8RgxXLf3BQ&usqp=CAU",
+        "rating": { "number": 4.5 },
+        "total_view": 400,
+        "visit": "500",
+        "description": "Retinal diseases vary widely, but most of them cause visual symptoms. Retinal diseases can affect any part of your retina, a thin layer of tissue on the inside back wall of your eye.The retina contains millions of light-sensitive cells (rods and cones) and other nerve cells that receive and organize visual information. Your retina sends this information to your brain through your optic nerve, enabling you to see.Treatment is available for some retinal diseases. Depending on your condition, treatment goals may be to stop or slow the disease and preserve, improve or restore your vision. Untreated, some retinal diseases can cause severe vision loss or blindness."
+
+    },
+    {"service_id": "06",
+        "title": "phakic lenses",
+        "img": "https://www.seekpng.com/png/small/4-46328_eyes-lens-png-eye-lens-colours-png.png",
+        "rating": { "number": 4.5 },
+        "total_view": 498,
+        "visit": "500",
+        "description": "Phakic intraocular lenses, or phakic lenses, are lenses made of plastic or silicone that are implanted into the eye permanently to reduce a person's need for glasses or contact lenses. Phakic refers to the fact that the lens is implanted into the eye without removing the eye's natural lens. During phakic lens implantation surgery, a small incision is made in the front of the eye. The phakic lens is inserted through the incision and placed just in front of or just behind the iris."
+
+    }
+    
+]

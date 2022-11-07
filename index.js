@@ -15,7 +15,22 @@ const uri = process.env.DB_URL;
 console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+async function run (){
+    try{
+        const servicesCollection = client.db('dentist').collection('service')
+        app.get('/services',async(req,res)=>{
+            const query = {};
+            const cursor = servicesCollection.find(query)
+            const result = await cursor.toArray()
+            console.log(result)
+            res.send(result)
+        })
+    }
+    finally{
 
+    }
+}
+run().catch(err=>console.error(err))
 
 
 app.get('/',(req,res)=>{

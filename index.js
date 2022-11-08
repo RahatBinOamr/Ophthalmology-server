@@ -38,7 +38,19 @@ async function run (){
             res.send(service);
           });
 
+/* visitor */
+          app.get('/visitors',async(req,res)=>{
 
+            let query ={};
+            if(req.query.email){
+                query={
+                    email:req.query.email
+                }
+            }
+            const cursor = visitCollection.find(query)
+            const result = await cursor.toArray()
+            res.send(result)
+          })
           app.post('/visitors',async(req,res)=>{
             const visitor = req.body;
             const result = await visitCollection.insertOne(visitor)

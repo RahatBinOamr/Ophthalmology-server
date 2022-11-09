@@ -46,8 +46,7 @@ async function run (){
             const cursor = servicesCollection.find(query)
             const services = await cursor.toArray()
             // console.log(services)
-            // const count = await servicesCollection.estimatedDocumentCount();
-            // res.send({count,services})
+          
             res.send(services)
         })
         app.get("/services/:id", async (req, res) => {

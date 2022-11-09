@@ -53,7 +53,7 @@ async function run (){
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const service = await servicesCollection.findOne(query);
-            console.log('vist')
+        
             res.send(service);
           });
 
@@ -85,20 +85,15 @@ async function run (){
             const patient = await visitCollection.findOne(query)
             res.send(patient)
          }) 
-        app.put('/visitors/:id', async (req, res) => {
-            const id = req.params.id;
-            const filter = {_id: ObjectId(id)};
-            const patient = req.body;
-            const option = {upsert:true}
-            const updateUser = {
-              $set:{
-                name:patient.name,
-                email:patient.email
-          
-              }
-            }
-           const result = await visitCollection.updateOne(filter,updateUser,option)
-           res.send(result)
+        app.patch('/visitors/:id', async (req, res) => {
+          const { id } = req.params;
+          const result = await visitCollection.updateOne({ _id: ObjectId(id) }, { $set: req.body });
+          if (result.matchedCount) {
+            res.send({
+              success: true,
+              message: `successfully updated ${req.body.name}`,
+            });
+          }
         })
           app.delete('/visitors/:id', async (req, res) => {
             const id = req.params.id;

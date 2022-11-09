@@ -4,14 +4,28 @@ const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 5000;
 require('dotenv').config()
-
+var jwt = require('jsonwebtoken');
 
 /* middle ware */
 app.use(cors());
 app.use(express.json())
 
 
-
+function verifyJWT(req,res,next){
+console.log(req.headers.authorization)
+const authHeader = req.headers.authorization;
+if(!authHeader){
+  return res.status(401).send({message:'unauthorize access'})
+}
+const token = authHeader.split(' ')[1];
+jwt.verify(token,process.env.SEC_USER,function(err,decoded){
+  if(err){
+    return res.status(401).send({message:'unauthorize access'})
+  }
+  req.decoded=decoded;
+  next()
+})
+}
 
 const uri = process.env.DB_URL;
 console.log(uri);
@@ -21,6 +35,12 @@ async function run (){
     try{
         const servicesCollection = client.db('dentist').collection('service')
         const visitCollection = client.db('dentist').collection('visitor')
+        app.post('/jwt',async(req,res)=>{
+            const user = req.body;
+            const token = jwt.sign(user,process.env.SEC_USER)
+            res.send({token})
+        })
+
         app.get('/services',async(req,res)=>{
             const query = {};
             const cursor = servicesCollection.find(query)
@@ -39,8 +59,9 @@ async function run (){
           });
 
 /* visitor */
-          app.get('/visitors',async(req,res)=>{
-
+          app.get('/visitors',verifyJWT,async(req,res)=>{
+            const decoded = req.decoded
+            console.log('inside visitor api',decoded);
             let query ={};
             if(req.query.email){
                 query={
@@ -56,18 +77,26 @@ async function run (){
             const result = await visitCollection.insertOne(visitor)
             res.send(result)
           })
-          
-        app.patch('/visitors/:id', async (req, res) => {
+         app.get('/visitors/:id',async(req,res)=>{
             const id = req.params.id;
-            const status = req.body.status
-            const query = { _id: ObjectId(id) }
-            const updatedDoc = {
-                $set:{
-                    status: status
-                }
+            const query = {_id: ObjectId(id)};
+            const patient = await visitCollection.findOne(query)
+            res.send(patient)
+         }) 
+        app.put('/visitors/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = {_id: ObjectId(id)};
+            const patient = req.body;
+            const option = {upsert:true}
+            const updateUser = {
+              $set:{
+                name:patient.name,
+                email:patient.email
+          
+              }
             }
-            const result = await visitCollection.updateOne(query, updatedDoc);
-            res.send(result);
+           const result = await visitCollection.updateOne(filter,updateUser,option)
+           res.send(result)
         })
           app.delete('/visitors/:id', async (req, res) => {
             const id = req.params.id;

@@ -20,7 +20,7 @@ if(!authHeader){
 const token = authHeader.split(' ')[1];
 jwt.verify(token,process.env.SEC_USER,function(err,decoded){
   if(err){
-    return res.status(403).send({message:'unauthorize access'})
+    return res.status(403).send({message:'Forbidden access'})
   }
   req.decoded=decoded;
   next()
@@ -36,8 +36,8 @@ async function run (){
         const servicesCollection = client.db('dentist').collection('service')
         const visitCollection = client.db('dentist').collection('visitor')
         app.post('/jwt',async(req,res)=>{
-            const user = req.body;
-            const token = jwt.sign(user,process.env.SEC_USER)
+            const visitor = req.body;
+            const token = jwt.sign(visitor,process.env.SEC_USER,{expiresIn:'2d'})
             res.send({token})
         })
 

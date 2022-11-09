@@ -20,7 +20,7 @@ if(!authHeader){
 const token = authHeader.split(' ')[1];
 jwt.verify(token,process.env.SEC_USER,function(err,decoded){
   if(err){
-    return res.status(401).send({message:'unauthorize access'})
+    return res.status(403).send({message:'unauthorize access'})
   }
   req.decoded=decoded;
   next()
@@ -62,6 +62,9 @@ async function run (){
           app.get('/visitors',verifyJWT,async(req,res)=>{
             const decoded = req.decoded
             console.log('inside visitor api',decoded);
+            if(decoded.email!==req.query.email){
+              res.status(403).send({message:'unauthorize access'})
+            }
             let query ={};
             if(req.query.email){
                 query={

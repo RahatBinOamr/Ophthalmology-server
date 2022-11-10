@@ -37,7 +37,7 @@ async function run (){
         const visitCollection = client.db('dentist').collection('visitor')
         app.post('/jwt',async(req,res)=>{
             const visitor = req.body;
-            const token = jwt.sign(visitor,process.env.SEC_USER,{expiresIn:'2d'})
+            const token = jwt.sign(visitor,process.env.SEC_USER)
             res.send({token})
         })
         /* service add */
@@ -71,7 +71,7 @@ async function run (){
             const decoded = req.decoded
             console.log('inside visitor api',decoded);
             if(decoded.email!==req.query.email){
-              res.status(404).send({message:'unauthorize access'})
+              res.status(403).send({message:'unauthorize access'})
             }
             let query ={};
             if(req.query.email){
@@ -83,6 +83,14 @@ async function run (){
             const result = await cursor.toArray()
             res.send(result)
           })
+
+          // app.get('/allvisitors',async(req,res)=>{
+          
+          //   const cursor = visitCollection.find({})
+          //   const result = await cursor.toArray()
+          //   res.send(result)
+          // })
+
           app.post('/visitors',async(req,res)=>{
             const visitor = req.body;
             const result = await visitCollection.insertOne(visitor)

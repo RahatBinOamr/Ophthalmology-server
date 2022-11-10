@@ -40,15 +40,24 @@ async function run (){
             const token = jwt.sign(visitor,process.env.SEC_USER,{expiresIn:'2d'})
             res.send({token})
         })
+        /* service add */
+        app.post("/services", async (req, res) => {
+          const filter = req.body;
+          console.log(filter)
+          const result = await servicesCollection.insertOne(filter);
+          res.send(result);
+        });
+    
+        app.get("/services", async (req, res) => {
+          const filter = {};
+          const cursor = servicesCollection.find(filter).sort({ $natural: -1 });
+          const service = await cursor.toArray();
+          res.send(service);
+        });
+        /* service add end */
 
-        app.get('/services',async(req,res)=>{
-            const query = {};
-            const cursor = servicesCollection.find(query)
-            const services = await cursor.toArray()
-            // console.log(services)
-          
-            res.send(services)
-        })
+
+        
         app.get("/services/:id", async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
@@ -62,7 +71,7 @@ async function run (){
             const decoded = req.decoded
             console.log('inside visitor api',decoded);
             if(decoded.email!==req.query.email){
-              res.status(403).send({message:'unauthorize access'})
+              res.status(404).send({message:'unauthorize access'})
             }
             let query ={};
             if(req.query.email){
@@ -79,6 +88,7 @@ async function run (){
             const result = await visitCollection.insertOne(visitor)
             res.send(result)
           })
+
          app.get('/visitors/:id',async(req,res)=>{
             const id = req.params.id;
             const query = {_id: ObjectId(id)};
@@ -95,6 +105,7 @@ async function run (){
             });
           }
         })
+
           app.delete('/visitors/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
